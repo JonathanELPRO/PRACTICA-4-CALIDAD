@@ -4,9 +4,25 @@ class PlaceAnOrderTable
     @table_body = @page.find(:css, 'body > form > table > tbody > tr:nth-child(1) > td > div > center > table > tbody')
   end
 
-  def row_at(index)
+ def total_price_at(index)
+   row = @table_body.all('tr')[index]
+   cells = row.all('td').map { |cell| cell.text.strip }
+   cells.last
+ end
+
+ def purchase_info_at(index, column)
     row = @table_body.all('tr')[index]
     cells = row.all('td').map { |cell| cell.text.strip }
-    [cells[0], cells[1]]  
+
+    case column.downcase
+    when 'qty'
+      cells[0]
+    when 'product description'
+      cells[1]
+    when 'unit price'
+      cells[3]
+    else
+      raise ArgumentError, "Unknown field: #{field}"
+    end
   end
 end

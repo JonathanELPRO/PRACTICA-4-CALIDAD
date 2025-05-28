@@ -1,5 +1,5 @@
 Feature: Fill out the item quantity form
-  As an online shopper,
+  As a returning GMO user,
   I want to add product quantities to my item quantity form,
   so that I can make a purchase.
   
@@ -17,11 +17,12 @@ Feature: Fill out the item quantity form
       | Hiking Boots             | 0              |
       | Back Country Shorts      | 3              |
     And I click on the "Place An Order" button
-    Then I should see the following quantities:
-      | Product Description      | Qty |
-      | 3 Person Dome Tent       | 2   |
-      | Glacier Sun Glasses      | 1   |
-      | Back Country Shorts      | 3   |
+    Then I should see the following quantities and prices:
+      | Product Description      | Qty | Unit Price |
+      | 3 Person Dome Tent       | 2   | $ 299.99   |
+      | Glacier Sun Glasses      | 1   | $ 67.99    |
+      | Back Country Shorts      | 3   | $ 24.95    |	
+
 
   Scenario: Submit order without entering any quantities
     When I set zero the order quantities as listed below:
