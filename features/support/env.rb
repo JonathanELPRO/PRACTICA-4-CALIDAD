@@ -2,7 +2,6 @@ begin require 'rspec/expectations'; rescue LoadError; require 'spec/expectations
   require 'capybara'
   require 'capybara/dsl'
   require 'capybara/cucumber'
-  require 'capybara-screenshot/cucumber'
   
   #PTravel Settings
   ENV['USER']="Pepazo"
@@ -34,5 +33,7 @@ begin require 'rspec/expectations'; rescue LoadError; require 'spec/expectations
   Capybara.run_server = false
   #World(Capybara)
   
+  Dir[File.join(File.dirname(__FILE__), 'page_objects', '*.rb')].each { |file| require file }
+
 
   
