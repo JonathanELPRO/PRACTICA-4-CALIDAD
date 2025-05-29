@@ -4,9 +4,9 @@ Feature: Fill in billing information
   so that I could complete my purchase.
 
   Background:
-    Given I am on the GMO Home Page
+    Given I am on the GMO main page
     And I click on the "Enter GMO OnLine" button
-    And I enter the order quantities as show below:
+    And I fill in the order quantities as listed below:
         | Item Name                | Order Quantity |
         | 3 Person Dome Tent       | 10             |
         | External Frame Backpack  | 5              |
@@ -14,8 +14,9 @@ Feature: Fill in billing information
     And I click on the "Proceed With Order" button
   
 
+
   Scenario Outline: Fill in my billing information with different card types
-    Given I am at "Billing Information" Page
+    Given I am at 'Billing Information' Page
     When I enter the bill to information as shown below:
       | Name        | <Name>           |
       | Address     | <Address>        |

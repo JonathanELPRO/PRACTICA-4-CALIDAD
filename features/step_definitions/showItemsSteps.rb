@@ -1,4 +1,4 @@
-Given('I am on the GMO main page') do
+Given('I am on the GMO main page') do  
   visit 'http://demo.borland.com/gmopost/'
   expect(page).to have_content("Welcome to Green Mountain Outpost's OnLine Catalog!")
 end
