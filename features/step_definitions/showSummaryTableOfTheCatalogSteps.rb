@@ -8,24 +8,19 @@
 #   expect(page).to have_content('OnLine Catalog')
 # end
 
+
 Then(/^I should see the following table:$/) do |expected_table|
-  #este hash empieza desde cero su indice
   expected_rows = expected_table.hashes
-
-  table_body = find(:css, 'body > form > table > tbody > tr:nth-child(2) > td > div > center > table > tbody')
-#   puts table_body.text 
-
-  #esto de abajo es un array que empieza de cero
-  actual_rows = table_body.all('tr')
+  catalog_table = CatalogTable.new(page)
 
   expected_rows.each_with_index do |expected_row, index|
-    #puts index
-    actual_cells = actual_rows[index+1].all('td').map { |cell| cell.text.strip }
-    # puts actual_cells[2]
-    # puts expected_row['Unit Price']
-    expect(actual_cells[0]).to eq(expected_row['Item Number'])
-    expect(actual_cells[1]).to eq(expected_row['Item Name'])
-    expect(actual_cells[2]).to eq(expected_row['Unit Price'])
+    expect(catalog_table.purchase_info_at(index + 1, "Item Number")).to eq(expected_row['Item Number'])
+    expect(catalog_table.purchase_info_at(index + 1, "Item Name")).to eq(expected_row['Item Name'])
+    expect(catalog_table.purchase_info_at(index + 1, "Unit Price")).to eq(expected_row['Unit Price'])
   end
 end
+
+
+
+
 
