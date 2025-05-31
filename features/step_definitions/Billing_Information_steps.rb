@@ -1,4 +1,4 @@
-When('I enter the bill to information as shown below:') do |table|
+When('I provide the billing details as follows:') do |table|
   info = table.rows_hash
 
   fill_in 'billName', with: info['Name']
@@ -13,10 +13,12 @@ When('I enter the bill to information as shown below:') do |table|
   fill_in 'CardDate', with: info['Expiration']
 end
 
-When('I check the {string} checkbox') do |checkbox_name|
+When('I enable the {string} shipping option') do |checkbox_name|
   check(checkbox_name)
 end
 
-Then('I am at {string} Page') do |page_name|
+Then('I have reached the {string} page') do |page_name|
   expect(page).to have_title(/#{page_name}/i)
 end
+
+
