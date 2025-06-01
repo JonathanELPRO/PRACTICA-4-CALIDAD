@@ -16,4 +16,3 @@ Then('I should see the following receipt details:') do |expected_table|
 end
 
 
-

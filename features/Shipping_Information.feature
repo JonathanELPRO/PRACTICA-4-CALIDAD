@@ -1,17 +1,8 @@
+@fillOrder
 Feature: Fill in shipping information
   As a customer shopping online,  
   I want to provide my shipping information details,  
   so that I can finalize my transaction successfully.
-
-Background:
-  Given I am on the GMO main page
-    And I click on the "Enter GMO OnLine" button
-    And I fill in the order quantities as listed below:
-      | Item Name               | Order Quantity |
-      | 3 Person Dome Tent      | 10             |
-      | External Frame Backpack | 5              |
-    And I click on the "Place An Order" button
-    And I click on the "Proceed With Order" button
 
 Scenario: Manually enter shipping details
   Given I have reached the "Billing Information" page

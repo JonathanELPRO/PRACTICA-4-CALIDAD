@@ -1,17 +1,8 @@
+@fillOrder
 Feature: Submit billing details  
   As a customer shopping online,  
   I want to provide my billing details,  
   So that I can successfully complete the checkout process.
-
-  Background:
-    Given I am on the GMO main page
-    And I click on the "Enter GMO OnLine" button
-    And I fill in the order quantities as listed below:
-      | Item Name               | Order Quantity |
-      | 3 Person Dome Tent      | 10             |
-      | External Frame Backpack | 5              |
-    And I click on the "Place An Order" button
-    And I click on the "Proceed With Order" button
 
   Scenario Outline: Submit billing details using various card types  
     Given I have reached the "Billing Information" page 
