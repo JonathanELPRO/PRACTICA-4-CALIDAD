@@ -38,5 +38,5 @@ Feature: Show the order information
     | Hiking Boots             | 0              |
     | Back Country Shorts      | 3              |
   And I click on the "Place An Order" button
-  Then each product's total price should be the result of quantity times unit price
+  Then the total price of each product in the "Place Order" table should be correct
    

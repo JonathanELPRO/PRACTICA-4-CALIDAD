@@ -14,8 +14,8 @@ Feature: Submit billing details
     And I click on the "Proceed With Order" button
 
   Scenario Outline: Submit billing details using various card types  
-    Given I have reached the "Billing Information" page  
-    When I provide the billing details as follows:  
+    Given I have reached the "Billing Information" page 
+    When I provide the "billing" details as follows:  
       | Name        | Camila Vargas       |
       | Address     | Av. Circunvalación 456 |
       | City        | Sucre               |
@@ -26,7 +26,7 @@ Feature: Submit billing details
       | Credit Card | <Credit Card>       |
       | Card Number | <Card Number>       |
       | Expiration  | 11/25               |
-    And I enable the "shipSameAsBill" shipping option  
+    And I enable the "shipSameAsBill" checkbox  
     And I click on the "Place The Order" button
     Then I have reached the "OnLine Store Receipt" page  
     Examples:  
@@ -37,18 +37,18 @@ Feature: Submit billing details
 
   Scenario Outline: Provide an invalid postal code  
     Given I have reached the "Billing Information" page  
-    When I provide the billing details as follows:  
+    When I provide the "billing" details as follows:  
       | Name        | Valeria Montes      |
       | Address     | Av. del Sol 789     |
       | City        | Oruro               |
       | State       | Oruro               |
       | Zip         | <Zip>               |
       | Phone       | 765-987-1234        |
-      | E-mail      | valeria@mail.com    |
+      | E-mail      | valeria@gmail.com    |
       | Credit Card | American Express    |
       | Card Number | 1234-123456-12345   |
       | Expiration  | 09/27               |
-    And I enable the "shipSameAsBill" shipping option  
+    And I enable the "shipSameAsBill" checkbox  
     And I click on the "Place The Order" button
     Then I should see the following message "Please enter a valid zip code in this field."
 
@@ -60,7 +60,7 @@ Feature: Submit billing details
 
   Scenario Outline: Enter an invalid phone number  
     Given I have reached the "Billing Information" page  
-    When I provide the billing details as follows:  
+    When I provide the "billing" details as follows:  
       | Name        | Fernando Ríos       |
       | Address     | Calle Junín 456     |
       | City        | Trinidad            |
@@ -71,7 +71,7 @@ Feature: Submit billing details
       | Credit Card | American Express    |
       | Card Number | 1234-123456-12345   |
       | Expiration  | 04/26               |
-    And I enable the "shipSameAsBill" shipping option  
+    And I enable the "shipSameAsBill" checkbox  
     And I click on the "Place The Order" button
     Then I should see the following message "Please enter a valid phone number in this field."
 
@@ -83,7 +83,7 @@ Feature: Submit billing details
 
   Scenario Outline: Submit form with an invalid credit card number  
     Given I have reached the "Billing Information" page  
-    When I provide the billing details as follows:  
+    When I provide the "billing" details as follows:  
       | Name        | Laura Méndez             |
       | Address     | Av. Aroma 234            |
       | City        | Tarija                   |
@@ -94,7 +94,7 @@ Feature: Submit billing details
       | Credit Card | <Credit Card>            |
       | Card Number | <Card Number>            |
       | Expiration  | 10/26                    |
-    And I enable the "shipSameAsBill" shipping option  
+    And I enable the "shipSameAsBill" checkbox  
     And I click on the "Place The Order" button
     Then I should see the following message "<Error Message>"
 
@@ -106,7 +106,7 @@ Feature: Submit billing details
 
   Scenario Outline: Submit form with incorrectly formatted expiry date  
     Given I have reached the "Billing Information" page  
-    When I provide the billing details as follows:  
+    When I provide the "billing" details as follows:  
       | Name        | Fernando Ríos       |
       | Address     | Calle Junín 456     |
       | City        | Trinidad           |
@@ -117,7 +117,7 @@ Feature: Submit billing details
       | Credit Card | American Express    |
       | Card Number | 1234-123456-12345   |
       | Expiration  | <Expiration>        |
-    And I enable the "shipSameAsBill" shipping option  
+    And I enable the "shipSameAsBill" checkbox  
     And I click on the "Place The Order" button
     Then I should see the following message "Please enter a valid date of the form 'MM/YY' in this field."
 
@@ -128,7 +128,7 @@ Feature: Submit billing details
 
   Scenario Outline: Submit billing form with missing required fields  
     Given I have reached the "Billing Information" page  
-    When I provide the billing details as follows:  
+    When I provide the "billing" details as follows:  
       | Name        | <Name>            |
       | Address     | <Address>         |
       | City        | <City>            |
@@ -139,7 +139,7 @@ Feature: Submit billing details
       | Credit Card | <Credit Card>     |
       | Card Number | <Card Number>     |
       | Expiration  | <Expiration>      | 
-    And I enable the "shipSameAsBill" shipping option  
+    And I enable the "shipSameAsBill" checkbox  
     And I click on the "Place The Order" button
     Then I should see the following message "This is a required field."
 

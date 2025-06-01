@@ -31,11 +31,7 @@ Then(/^I should see the following quantities and prices:$/) do |table|
   end
 end
 
-Then('I should see the following message {string}') do |expected_message|
-  alert = page.driver.browser.switch_to.alert
-  actual_message = alert.text
-  expect(actual_message).to eq(expected_message)
-end
+
 
 
 
