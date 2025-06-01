@@ -16,3 +16,4 @@ Feature: Display receipt information
   Scenario: Each product total matches quantity times unit price
     When I have reached the "OnLine Store Receipt" page
     Then the total price of each product in the "Receipt" table should be correct
+    And the Product Total and the Grand Total in the "Receipt" table should be correct
