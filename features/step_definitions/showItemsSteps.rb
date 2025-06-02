@@ -1,12 +1,3 @@
-Given('I am on the GMO main page') do
-  visit 'http://demo.borland.com/gmopost/'
-  expect(page).to have_content("Welcome to Green Mountain Outpost's OnLine Catalog!")
-end
-
-When('I click on the {string} button') do |button_text|
-  click_button(button_text)
-end
-
 And('I click on each product link:') do |table|
   @clicked_items = table.hashes 
   @visited_results = []

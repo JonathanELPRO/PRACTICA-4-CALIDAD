@@ -12,7 +12,7 @@ cucumber features\1calc.feature -f html -o reports\reportExecution.html
 
 Run an specific scenario in a feature file
 ==========================================
-cucumber features\1calc.feature  -t @onlyThis
+cucumber features\1calc.feature  -t@onlyThis
 
 Run all features
 ================
