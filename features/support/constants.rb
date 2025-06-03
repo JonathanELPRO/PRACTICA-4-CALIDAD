@@ -1,5 +1,4 @@
 module Constants
-  SALES_TAX = 37.14
   SHIPPING_HANDLING = 5.00
 
   PRODUCTS = {

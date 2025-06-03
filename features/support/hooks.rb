@@ -25,11 +25,11 @@ Before('@fillOrderAndBillingShippingForm') do
   step 'I fill in the order quantities as listed below:', 
     table(%(
       | Item Name               | Order Quantity |
-      | 3 Person Dome Tent      | 2              |
-      | External Frame Backpack | 0              |
-      | Glacier Sun Glasses     | 1              |
-      | Padded Socks            | 0              |
-      | Hiking Boots            | 0              |
+      | 3 Person Dome Tent      | 20              |
+      | External Frame Backpack | 10              |
+      | Glacier Sun Glasses     | 11              |
+      | Padded Socks            | 1              |
+      | Hiking Boots            | 1              |
       | Back Country Shorts     | 3              |
     ))
   step 'I click on the "Place An Order" button'

@@ -32,12 +32,12 @@ Feature: Show the order information
   Scenario: Validate total prices are correct based on quantity and unit price
     When I fill in the order quantities as listed below:
       | Item Name                | Order Quantity |
-      | 3 Person Dome Tent       | 2              |
+      | 3 Person Dome Tent       | 0              |
       | External Frame Backpack  | 0              |
-      | Glacier Sun Glasses      | 1              |
-      | Padded Socks             | 0              |
-      | Hiking Boots             | 0              |
-      | Back Country Shorts      | 3              |
+      | Glacier Sun Glasses      | 3              |
+      | Padded Socks             | 2              |
+      | Hiking Boots             | 1              |
+      | Back Country Shorts      | 40              |
     And I click on the "Place An Order" button
     Then the total price of each product in the "Place Order" table should be correct
     And the Product Total and the Grand Total in the "Place Order" table should be correct

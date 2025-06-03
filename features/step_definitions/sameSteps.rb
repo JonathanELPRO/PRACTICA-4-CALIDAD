@@ -55,22 +55,28 @@ And(/^the Product Total and the Grand Total in the "(Place Order|Receipt)" table
           end
 
   row_count = table.valid_rows.last().to_i 
+  puts "PUT DE VALIDACION--> Cantidad de productos pedidos : #{table.valid_rows.last().to_i}"
   expected_total_price_from_product_total = 0
   (1..row_count).each do |index|
     product_description = table.purchase_info_at(index,'product description')
     qty = table.purchase_info_at(index, 'Qty').to_i
     unit_price = find_price_by_product_name(product_description)
-
-    expected_total = (qty * unit_price).round(2)
+    expected_total = (qty * unit_price)
     expected_total_price_from_product_total = expected_total_price_from_product_total + expected_total
   end
+  
+  puts "PUT DE VALIDACION--> Total esperado de todos los productos: #{expected_total_price_from_product_total}"
 
-  total_price_from_product_total = table.total_price_at(4).gsub(/[^\d.]/, '').to_f
-  total_price_from_sales_tax = SALES_TAX
-  total_price_from_shipping_handling = SHIPPING_HANDLING
-  total_price_grand_total = table.total_price_at(7).gsub(/[^\d.]/, '').to_f
-
-  expect(total_price_from_product_total).to eq(expected_total_price_from_product_total)
-  expect(total_price_grand_total).to eq(expected_total_price_from_product_total + total_price_from_sales_tax + total_price_from_shipping_handling)
+  total_price_from_product_total = table.total_price_at(row_count+1).gsub(/[^\d.]/, '').to_f
+  puts "PUT DE VALIDACION--> Total de la tabla de todos los productos  #{total_price_from_product_total}"
+  expected_total_price_from_sales_tax = expected_total_price_from_product_total * 0.05
+  puts "PUT DE VALIDACION--> Sales taxes esperado  #{expected_total_price_from_sales_tax}"
+  expected_total_price_from_shipping_handling = SHIPPING_HANDLING
+  total_price_grand_total = table.total_price_at(row_count+4).gsub(/[^\d.]/, '').to_f
+  puts "PUT DE VALIDACION--> Grand total de la tabla #{total_price_grand_total}"
+  expected_total_price_grand_total = expected_total_price_from_product_total + expected_total_price_from_sales_tax + expected_total_price_from_shipping_handling
+  puts "PUT DE VALIDACION--> Grand total esperado #{expected_total_price_grand_total}"
+  expect(total_price_from_product_total).to eq(expected_total_price_from_product_total.round(2))
+  expect(total_price_grand_total).to eq(expected_total_price_grand_total.round(2))
 end
   
