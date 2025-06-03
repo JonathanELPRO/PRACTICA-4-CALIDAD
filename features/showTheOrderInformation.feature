@@ -27,7 +27,8 @@ Feature: Show the order information
         | Sales Tax                | $ 37.14     |
         | Shipping & Handling      | $ 5.00      |
         | Grand Total              | $ 784.96    |
-
+        
+  @onlyThis
   Scenario: Validate total prices are correct based on quantity and unit price
     When I fill in the order quantities as listed below:
       | Item Name                | Order Quantity |

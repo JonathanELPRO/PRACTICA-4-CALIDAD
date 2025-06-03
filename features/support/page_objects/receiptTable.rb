@@ -26,4 +26,14 @@ class ReceiptTable
    cells.last
   end
 
+  def valid_rows
+    rows = []
+    @table_body.all('tr').each_with_index do |row, index|
+      cells = row.all('td')
+      rows << index if cells.size == 5
+    end
+    rows
+  end
+
+
 end

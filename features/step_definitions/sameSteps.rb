@@ -1,3 +1,10 @@
+include Constants
+
+def find_price_by_product_name(name)
+  product = PRODUCTS.values.find { |p| p[:name].casecmp(name).zero? }
+  product ? product[:price] : nil
+end
+
 When('I enable the {string} checkbox') do |checkbox_name|    
   check(checkbox_name)
 end
@@ -28,10 +35,11 @@ Then(/^the total price of each product in the "(Place Order|Receipt)" table shou
           else raise "Unknown table type: #{table_type}"
           end
 
-  row_count = 3 
+  row_count = table.valid_rows.last().to_i
   (1..row_count).each do |index|
+    product_description = table.purchase_info_at(index,'product description')
     qty = table.purchase_info_at(index, 'Qty').to_i
-    unit_price = table.purchase_info_at(index, 'Unit Price').gsub(/[^\d.]/, '').to_f
+    unit_price = find_price_by_product_name(product_description)
     total_price = table.total_price_at(index).gsub(/[^\d.]/, '').to_f
 
     expected_total = (qty * unit_price).round(2)
@@ -46,23 +54,23 @@ And(/^the Product Total and the Grand Total in the "(Place Order|Receipt)" table
           else raise "Unknown table type: #{table_type}"
           end
 
-  row_count = 3 
+  row_count = table.valid_rows.last().to_i 
   expected_total_price_from_product_total = 0
   (1..row_count).each do |index|
+    product_description = table.purchase_info_at(index,'product description')
     qty = table.purchase_info_at(index, 'Qty').to_i
-    unit_price = table.purchase_info_at(index, 'Unit Price').gsub(/[^\d.]/, '').to_f
-    total_price = table.total_price_at(index).gsub(/[^\d.]/, '').to_f
+    unit_price = find_price_by_product_name(product_description)
 
     expected_total = (qty * unit_price).round(2)
     expected_total_price_from_product_total = expected_total_price_from_product_total + expected_total
   end
 
   total_price_from_product_total = table.total_price_at(4).gsub(/[^\d.]/, '').to_f
-  total_price_from_salex_tax = table.total_price_at(5).gsub(/[^\d.]/, '').to_f
-  total_price_from_shipping_handling = table.total_price_at(6).gsub(/[^\d.]/, '').to_f
+  total_price_from_sales_tax = SALES_TAX
+  total_price_from_shipping_handling = SHIPPING_HANDLING
   total_price_grand_total = table.total_price_at(7).gsub(/[^\d.]/, '').to_f
 
   expect(total_price_from_product_total).to eq(expected_total_price_from_product_total)
-  expect(total_price_grand_total).to eq(expected_total_price_from_product_total + total_price_from_salex_tax + total_price_from_shipping_handling)
+  expect(total_price_grand_total).to eq(expected_total_price_from_product_total + total_price_from_sales_tax + total_price_from_shipping_handling)
 end
   
